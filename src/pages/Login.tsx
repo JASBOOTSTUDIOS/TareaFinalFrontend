@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { imgLoginSensible } from "../assets/imgs";
 export default function Login() {
@@ -6,7 +7,6 @@ export default function Login() {
   const [userPassword, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  // let estado = true;
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -24,8 +24,11 @@ export default function Login() {
       if (!response.ok) {
         throw new Error("Credenciales incorrectas");
       }
-
+      
       const data = await response.json();
+      console.log(data);
+      const decode = jwtDecode(data.token);
+      console.log(decode);
       localStorage.setItem("id", data.id); // Guardar el token en localStorage
       localStorage.setItem("token", data.token); // Guardar el token en localStorage
       localStorage.setItem("userName", data.userName); // Guardar el token en localStorage
