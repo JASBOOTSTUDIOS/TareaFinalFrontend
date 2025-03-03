@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
 
 export default function Dashboard() {
   const [user, setUser] = useState<string | null>(null);
@@ -20,7 +19,7 @@ export default function Dashboard() {
   return (<>
   
   
-    <Navbar/>
+    {/* <Navbar/> */}
   <div className="row text-center vh-100 bg-dark">
             <div className="col-12">
             <h1 className="text-info">Bienvenido al Dashboard</h1>

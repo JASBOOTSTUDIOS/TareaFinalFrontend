@@ -8,8 +8,8 @@ export default function App() {
         <>
         <Routes>
             <Route path="/" element={<><Navbar/><Home /></>} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/login" element={<><Navbar/><Login /></>} />
+            <Route path="/dashboard" element={<><Navbar/><Dashboard /></>} />
         </Routes>
         </>
     );

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { imgLoginSensible } from "../assets/imgs";
-import { Navbar } from "../components/Navbar";
 export default function Login() {
   const [userName, setUsername] = useState("");
   const [userPassword, setPassword] = useState("");
@@ -14,7 +13,7 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("http://localhost:3001/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,16 +26,20 @@ export default function Login() {
       }
 
       const data = await response.json();
+      localStorage.setItem("id", data.id); // Guardar el token en localStorage
       localStorage.setItem("token", data.token); // Guardar el token en localStorage
+      localStorage.setItem("userName", data.userName); // Guardar el token en localStorage
       navigate("/dashboard"); // Redirigir al Dashboard
     } catch (err: any) {
       setError(err.message);
+      setPassword("");
+      setUsername("");
     }
   };
 
   return (
     <div className="row text-center vh-100 vh-sm-auto bg-dark">
-      <Navbar/>
+      {/* <Navbar/> */}
 
       <div className="col-12"></div>
       <div className="col"></div>
