@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate,useLocation, Link } from "react-router-dom";
-import { HomeIcon, LoginIcon } from "./icons/Icons";
+import { HomeIcon, LoginIcon, PerfilIcon, InfoIcon, WalletIcon, MenuIcon, LogoutIcon } from "./icons/Icons";
 import { API_ROUTE } from "../../ENV";
 
 export function Navbar() {
@@ -40,7 +40,8 @@ export function Navbar() {
     <>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container-fluid">
-    <Link className="navbar-brand" to={validToken ? "#": "/"}>{validToken ? `Hola Sr. ${users.nombres}` : `Inicio`}</Link>
+      <label className="nav nav-link text-info" htmlFor="btn-sidebar"><MenuIcon/></label>
+    <Link className="navbar-brand" to={validToken ? "#": "/"}>{validToken ? ` ${users.nombres}` : `Inicio`}</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -79,7 +80,7 @@ export function Navbar() {
       {/* Sidebar */}
       <nav className="navbar navbar-md navbar-dark ">
         <div className="container-fluid">
-          <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"><span className="navbar-toggler-icon"></span></button>
+          <button id="btn-sidebar" className="d-flex btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"></button>
 
           {/* Nav Button */}
           {/* Off canvas container start */}
@@ -90,11 +91,11 @@ export function Navbar() {
             </div>
             {/* OFF CANVAS LIKS */}
             <div className="offcanvas-body d-flex flex-column justify-conten-between px-0">
-              <ul className="navbar-nav fs-5 justify-content-evenly">
+              <ul className="navbar-nav fs-6 justify-content-evenly">
                 <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><HomeIcon/> INICIO</Link></li>
-                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><i className="fi fi-sr-user"></i>PERFIL DE USUARIO</Link></li>
-                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}>VER SUELDO</Link></li>
-                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}>INFORMACIO</Link></li>
+                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><PerfilIcon/> PERFIL DE USUARIO</Link></li>
+                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><WalletIcon/> VER SUELDO</Link></li>
+                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><InfoIcon/> INFORMACIO</Link></li>
               </ul>
             {/* Enlacess */}
               {/* <Link to={"#"}></Link> */}
@@ -105,7 +106,7 @@ export function Navbar() {
               <Link to={"#"}>3</Link>
               <Link to={"#"}><LoginIcon/></Link>
               </div>
-              <Link className="nav-link P- text-info fs-5" to={"#"}>CERRAR SESION<LoginIcon/></Link>
+              <Link className="nav-link p-3 mx-4 nav-hover text-info fs-5" to={"#"}><LogoutIcon/>CERRAR SESION</Link>
           </section>
 
 

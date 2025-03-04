@@ -48,7 +48,7 @@ export default function Login() {
   };
 
   return (
-    <div className="row text-center vh-100 vh-sm-auto bg-dark">
+    <div className="row text-center bg-dark">
       {/* <Navbar/> */}
 
       <div className="col-12"></div>
