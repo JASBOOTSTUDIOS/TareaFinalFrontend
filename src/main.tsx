@@ -3,7 +3,8 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap'
+import 'bootstrap';
+import 'boxicons/css/boxicons.min.css';
 
 
 

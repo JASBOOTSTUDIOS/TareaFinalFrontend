@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { imgLoginSensible } from "../assets/imgs";
+import {API_ROUTE} from "../../ENV";
 export default function Login() {
   const [userName, setUsername] = useState("");
   const [userPassword, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    if(token) navigate("/dashboard");
+  },[]);
+
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     setError("");
 
     try {
-      const response = await fetch("http://localhost:3001/login", {
+      const response = await fetch(`${API_ROUTE}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,7 +28,8 @@ export default function Login() {
       });
 
       if (!response.ok) {
-        throw new Error("Credenciales incorrectas");
+        const error = await response.json()
+        throw new Error(error.msg);
       }
       
       const data = await response.json();
@@ -73,9 +80,10 @@ export default function Login() {
               value={userPassword}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="form form-control mb-5"
+              className="form form-control"
             />
-            <button type="submit" className="btn btn-outline-primary col-7">
+            {error && <p className="text-danger fs-7">{error}</p>}
+            <button type="submit" className="btn btn-outline-primary col-7 mt-5">
               Ingresar
             </button>
           </form>
@@ -83,7 +91,6 @@ export default function Login() {
         {/* Login */}
       </div>
       <div className="col"></div>
-      {error && <p className="">{error}</p>}
     </div>
   );
 }

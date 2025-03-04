@@ -6,11 +6,14 @@ import { Navbar } from "./components/Navbar";
 export default function App() {
     return (
         <>
-        <Routes>
-            <Route path="/" element={<><Navbar/><Home /></>} />
-            <Route path="/login" element={<><Navbar/><Login /></>} />
-            <Route path="/dashboard" element={<><Navbar/><Dashboard /></>} />
-        </Routes>
+        <div className="container-fluid bg-dark">
+            <Navbar/>
+            <Routes>
+                <Route path="/" element={<><Home /></>} />
+                <Route path="/login" element={<><Login /></>} />
+                <Route path="/dashboard" element={<><Dashboard /></>} />
+            </Routes>
+        </div>
         </>
     );
 }
