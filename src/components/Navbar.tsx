@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate,useLocation, Link } from "react-router-dom";
-import { HomeIcon, LoginIcon, PerfilIcon, InfoIcon, WalletIcon, MenuIcon, LogoutIcon } from "./icons/Icons";
+import { HomeIcon, LoginIcon, PerfilIcon, InfoIcon, WalletIcon, MenuIcon, LogoutIcon, UserDetailIcon } from "./icons/Icons";
 import { API_ROUTE } from "../../ENV";
+import { BgContent, NavColor, textColorPrimary } from "./themesAndColors/TemesAndColors";
 
 export function Navbar() {
   const API_URL = API_ROUTE;
@@ -31,16 +33,34 @@ export function Navbar() {
         if (!token) {
           setToken("");
         } else {
-          setToken(token);
-           getAllUsers();
+          try{
+          
+            // console.info(`Datos del decode:`);
+            // console.info(decode);
+            const isTokenExpired = (token: string): boolean =>{
+              const decode = jwtDecode<{exp:number }>(token);
+              return decode.exp * 1000 < Date.now();
+            }
+            if(token && isTokenExpired(token)){
+              console.info(`El token expiró.`);
+              localStorage.removeItem("token")
+            }else{
+              setToken(token);
+              getAllUsers();
+            }
+          }catch(error){
+    
+          }
+          
         }
+        // htmlFor="btn-sidebar"
   }, [location]);
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+      <nav className={`navbar navbar-expand-sm ${NavColor} ${BgContent}`}>
       <div className="container-fluid">
-      <label className="nav nav-link text-info" htmlFor="btn-sidebar"><MenuIcon/></label>
+      {validToken ? <label className={`nav nav-link ${textColorPrimary}`} htmlFor="btn-sidebar"><MenuIcon/></label> : ""}
     <Link className="navbar-brand" to={validToken ? "#": "/"}>{validToken ? ` ${users.nombres}` : `Inicio`}</Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -65,9 +85,7 @@ export function Navbar() {
           </ul>
         </li>
         <li className="nav-item">
-            <button className="nav-link" onClick={handleLogout}>
-              {validToken ? "Cerrar Sesion": ""}
-            </button>
+          <Link to={"#"}></Link>
         </li>
       </ul>
       <form className="d-flex">
@@ -80,23 +98,25 @@ export function Navbar() {
       {/* Sidebar */}
       <nav className="navbar navbar-md navbar-dark ">
         <div className="container-fluid">
-          <button id="btn-sidebar" className="d-flex btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"></button>
+          {validToken ? <button id="btn-sidebar" className="d-flex btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"></button> : ""}
 
           {/* Nav Button */}
           {/* Off canvas container start */}
           <section className="offcanvas offcanvas-start bg-dark" id="sidebar" tabIndex={-1}>
             <div className="offcanvas-header">
               <h5 className="text-info fs-4 ">Herramientas</h5>
-              <button className="btn-close" type="button" aria-label="close" data-bs-dismiss="offcanvas" data-bs-theme="dark"></button>
+              <button id="closed" className="btn-close" type="button" aria-label="close" data-bs-dismiss="offcanvas" data-bs-theme="dark"></button>
             </div>
             {/* OFF CANVAS LIKS */}
             <div className="offcanvas-body d-flex flex-column justify-conten-between px-0">
               <ul className="navbar-nav fs-6 justify-content-evenly">
-                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><HomeIcon/> INICIO</Link></li>
+                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"/dashboard"}><HomeIcon/> INICIO</Link></li>
+                <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"/dashboard/usuarios"}><UserDetailIcon/> USUARIOS</Link></li>
                 <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><PerfilIcon/> PERFIL DE USUARIO</Link></li>
                 <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><WalletIcon/> VER SUELDO</Link></li>
                 <li className="nav-item p-3 py-md-1"><Link className="nav-link text-info" to={"#"}><InfoIcon/> INFORMACIO</Link></li>
               </ul>
+              
             {/* Enlacess */}
               {/* <Link to={"#"}></Link> */}
             </div>
@@ -106,7 +126,7 @@ export function Navbar() {
               <Link to={"#"}>3</Link>
               <Link to={"#"}><LoginIcon/></Link>
               </div>
-              <Link className="nav-link p-3 mx-4 nav-hover text-info fs-5" to={"#"}><LogoutIcon/>CERRAR SESION</Link>
+              <button className="nav-link p-3 mx-4 nav-hover text-info fs-5" onClick={handleLogout}><label htmlFor="btn-sidebar"><LogoutIcon/>CERRAR SESION</label></button>
           </section>
 
 

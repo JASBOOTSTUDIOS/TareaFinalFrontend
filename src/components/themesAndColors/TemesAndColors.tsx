@@ -1,6 +1,8 @@
 
 // Text Colors.
-export const B_TextInfo = "";
+export const textColorPrimary = "text-info";
 
 // Background Colors.
-export const B_BbDark = "";
+export const BgContent = "bg-dark";
+
+export const NavColor = "navbar-dark"

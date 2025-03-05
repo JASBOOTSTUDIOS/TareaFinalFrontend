@@ -3,6 +3,9 @@ const ColorIcons = "#1087BA"
 export function HomeIcon(){
     return <i className='bx bx-home p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
 };
+export function UserDetailIcon(){
+    return <i className='bx bxs-user-account p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
+};
 export function ExitIcon(){
     return <i className='bx bx-home p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
 };

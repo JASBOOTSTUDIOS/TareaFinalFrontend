@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { imgLoginSensible } from "../assets/imgs";
 import {API_ROUTE} from "../../ENV";
@@ -8,10 +7,12 @@ export default function Login() {
   const [userPassword, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+// Verificacion del token.
   useEffect(()=>{
     const token = localStorage.getItem("token");
-    if(token) navigate("/dashboard");
+    if(token){
+      navigate("/dashboard");
+    }
   },[]);
 
   const handleLogin = async (event: React.FormEvent) => {
@@ -34,8 +35,6 @@ export default function Login() {
       
       const data = await response.json();
       console.log(data);
-      const decode = jwtDecode(data.token);
-      console.log(decode);
       localStorage.setItem("id", data.id); // Guardar el token en localStorage
       localStorage.setItem("token", data.token); // Guardar el token en localStorage
       localStorage.setItem("userName", data.userName); // Guardar el token en localStorage
@@ -48,7 +47,7 @@ export default function Login() {
   };
 
   return (
-    <div className="row text-center bg-dark">
+    <div className=" text-center">
       {/* <Navbar/> */}
 
       <div className="col-12"></div>

@@ -20,12 +20,11 @@ export default function Dashboard() {
   
   
     {/* <Navbar/> */}
-  <div className="row text-center vh-100 bg-dark">
+  <div className="row text-center">
             <div className="col-12">
             <h1 className="text-info">Bienvenido al Dashboard</h1>
             <p className="text-info">Usuario: {user}</p>
             </div>
-           
         </div>
   </>);
 }
