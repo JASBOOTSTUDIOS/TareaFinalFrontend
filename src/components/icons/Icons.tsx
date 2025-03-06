@@ -6,6 +6,9 @@ export function HomeIcon(){
 export function UserDetailIcon(){
     return <i className='bx bxs-user-account p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
 };
+export function UserPlusIcon(){
+    return <i className='bx bx-user-plus p-0 m-0' style={{ color: ColorIcons, fontSize:'35px' }}></i>;
+};
 export function ExitIcon(){
     return <i className='bx bx-home p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
 };
