@@ -34,7 +34,6 @@ export default function Login() {
       }
       
       const data = await response.json();
-      console.log(data);
       localStorage.setItem("id", data.id); // Guardar el token en localStorage
       localStorage.setItem("token", data.token); // Guardar el token en localStorage
       localStorage.setItem("userName", data.userName); // Guardar el token en localStorage

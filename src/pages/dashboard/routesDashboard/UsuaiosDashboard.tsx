@@ -4,10 +4,10 @@ import { CredentialsTable } from "../../../components/Tables/CredentialsTable";
 
 export default function UsuariosDashboard(){
     return (<>
-        <center>
-            <CredentialsTable/>
-            <h1 className={`${textColorPrimary}`}>Usuarios</h1>
-        </center>
-    
+       
+            <div className="row" >
+                    <h1 className={`${textColorPrimary}`}>Tabla de Usuarios</h1>
+                    <CredentialsTable/>
+            </div>  
     </>)
 }

@@ -4,10 +4,10 @@ export function HomeIcon(){
     return <i className='bx bx-home p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
 };
 export function UserDetailIcon(){
-    return <i className='bx bxs-user-account p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
+    return <i className='bx bxs-user-account p-0 m-0' style={{ color: ColorIcons, fontSize:'20px' }}></i>;
 };
 export function UserPlusIcon(){
-    return <i className='bx bx-user-plus p-0 m-0' style={{ color: ColorIcons, fontSize:'35px' }}></i>;
+    return <i className='bx bx-user-plus p-0 m-0' style={{ color: ColorIcons, fontSize:'25px' }}></i>;
 };
 export function ExitIcon(){
     return <i className='bx bx-home p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
@@ -39,5 +39,13 @@ export function InfoIcon(){
 
 export function MenuIcon(){
     return <i className='bx bx-food-menu p-0 m-0' style={{ color: ColorIcons, fontSize:'30px' }}></i>;
+    
+}
+export function EditAltIcon(){
+    return <i className='bx bx-edit-alt p-0 m-0' style={{ color: ColorIcons, fontSize:'20px' }}></i>;
+    
+}
+export function TrashIcon(){
+    return <i className='bx bx-trash p-0 m-0' style={{ color: ColorIcons, fontSize:'20px' }}></i>;
     
 }

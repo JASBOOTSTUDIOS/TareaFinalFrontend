@@ -17,6 +17,8 @@ export function validToken():boolean{
                 if(token && isTokenExpired(token)){
                   console.info(`El token expiró.`);
                   localStorage.removeItem("token");
+                  localStorage.removeItem("userName");
+                  localStorage.removeItem("id");
                 }else{
                     vail_Token = true;
                 }
@@ -37,4 +39,19 @@ export async function  getUser(){
     });
     const data = await res.json();
     return data;
+  };
+
+export async function  getAllUser(){
+  try{
+
+    const token = localStorage.getItem("token");
+    const res = await fetch(`${API_ROUTE}/credentials`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    return data;
+  }catch(error){
+    return;
+  }
   };
