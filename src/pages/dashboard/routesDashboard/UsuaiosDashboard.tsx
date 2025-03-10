@@ -2,6 +2,7 @@ import { textColorPrimary } from "../../../components/themesAndColors/TemesAndCo
 import { CredentialsTable } from "../../../components/Tables/CredentialsTable";
 import { ModalBootstrap } from "../../../components/Modals/ModalProps";
 import { useState } from "react";
+import FormTableCredentials from "../../../components/Tables/FormTableCredentials";
 
 export default function UsuariosDashboard() {
   const [showModal, useShowModal] = useState(false);
@@ -16,7 +17,7 @@ export default function UsuariosDashboard() {
           handleClose={() => useShowModal(false)}
           title="Modal de Prueva"
         >
-          <h1 className={`${textColorPrimary}`}>Mi Modal Funciona</h1>
+          <FormTableCredentials/>
         </ModalBootstrap>
         <h1 className={`${textColorPrimary}`}>Tabla de Usuarios</h1>
         <CredentialsTable />

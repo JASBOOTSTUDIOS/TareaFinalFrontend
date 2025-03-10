@@ -32,7 +32,12 @@ return (<>
             <label htmlFor="telefono" className={`${textColorPrimary}`}>Fecha de actualización</label>
             <input className={`bg-dark form-control ${textColorPrimary}`} disabled placeholder="Telefono" type="text" id="telefono"/>
         </div>
+        <div className="row m-1">
+            <div className="col"><button type="submit" className="btn btn-outline-success">Guardar</button></div>
+            <div className="col"><button  className="btn btn-outline-danger" >Cancelar</button></div>
+        </div>
     </div>
+
 </form>
 </>)
 }

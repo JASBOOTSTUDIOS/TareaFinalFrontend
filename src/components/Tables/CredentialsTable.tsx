@@ -19,8 +19,10 @@ export type Credentials = {
 };
 
 export function CredentialsTable() {
+
   const navigate = useNavigate();
   const [Users, useUsers] = useState<Credentials[]>([]);
+  const [UpdateCredentialsModal, setUpdateCredentialsModal] = useState(false);
 
   const validTokens = validToken();
   if (!validTokens) {
@@ -84,7 +86,7 @@ export function CredentialsTable() {
                   >
                     <EditAltIcon />
                   </button>
-                  <button
+                  <button 
                     className="btn btn-sm  btn-outline-danger"
                     type="button"
                   >
