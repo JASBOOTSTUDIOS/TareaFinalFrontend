@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { imgLoginSensible } from "../assets/imgs";
-import {API_ROUTE} from "../../ENV";
+import { API_ROUTE } from "../../ENV";
 export default function Login() {
   const [userName, setUsername] = useState("");
   const [userPassword, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-// Verificacion del token.
-  useEffect(()=>{
+  // Verificacion del token.
+  useEffect(() => {
     const token = localStorage.getItem("token");
-    if(token){
+    if (token) {
       navigate("/dashboard");
     }
-  },[]);
+  }, []);
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -29,14 +29,13 @@ export default function Login() {
       });
 
       if (!response.ok) {
-        const error = await response.json()
+        const error = await response.json();
         throw new Error(error.msg);
       }
-      
+
       const data = await response.json();
-      localStorage.setItem("id", data.id); // Guardar el token en localStorage
+      console.info(data);
       localStorage.setItem("token", data.token); // Guardar el token en localStorage
-      localStorage.setItem("userName", data.userName); // Guardar el token en localStorage
       navigate("/dashboard"); // Redirigir al Dashboard
     } catch (err: any) {
       setError(err.message);
@@ -71,7 +70,8 @@ export default function Login() {
               value={userName}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="form form-control mb-5"/>
+              className="form form-control mb-5"
+            />
             <input
               type="password"
               placeholder="Contraseña"
@@ -81,7 +81,10 @@ export default function Login() {
               className="form form-control"
             />
             {error && <p className="text-danger fs-7">{error}</p>}
-            <button type="submit" className="btn btn-outline-primary col-7 mt-5">
+            <button
+              type="submit"
+              className="btn btn-outline-primary col-7 mt-5"
+            >
               Ingresar
             </button>
           </form>
