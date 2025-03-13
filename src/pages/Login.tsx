@@ -20,7 +20,7 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await fetch(`${API_ROUTE}/login`, {
+      const response = await fetch(`${API_ROUTE}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
